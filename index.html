@@ -12,12 +12,15 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy: #1A2744;
-      --baby-blue: #87CEEB;
-      --blue-light: #EBF6FC;
+      --navy: #0D0D0D;
+      --gold: #C9A84C;
+      --gold-light: #F5E6C0;
+      --dark-section: rgba(10,10,10,0.82);
+      --mid-section: rgba(20,16,10,0.78);
       --white: #FFFFFF;
-      --mid-grey: #6B7280;
-      --border: #E5E7EB;
+      --off-white: #F5F0E8;
+      --mid-grey: #A89880;
+      --border: rgba(201,168,76,0.25);
       --font-display: 'Barlow Condensed', sans-serif;
       --font-body: 'Inter', sans-serif;
     }
@@ -32,13 +35,36 @@
       line-height: 1.6;
     }
 
+    /* ── FULL PAGE BACKGROUND IMAGE ── */
+    .bg-layer {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      transition: opacity 1.5s ease-in-out;
+    }
+    .bg-layer-1 { background-image: url('https://raw.githubusercontent.com/aherndavid/stupid-tees/main/assets/runway.png'); opacity: 1; z-index: -1; }
+    .bg-layer-2 { background-image: url('https://raw.githubusercontent.com/aherndavid/stupid-tees/main/assets/runway2.png'); opacity: 0; z-index: -1; }
+
+    /* make sections sit over background — dark cinematic theme */
+    nav        { background: rgba(8,6,4,0.88) !important; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(201,168,76,0.3) !important; }
+    #home      { background: transparent; }
+    #shop      { background: rgba(180,140,30,0.82); }
+    .blue-band { background: rgba(201,168,76,0.18) !important; border-top: 1px solid rgba(201,168,76,0.4); border-bottom: 1px solid rgba(201,168,76,0.4); }
+    #about     { background: rgba(12,10,6,0.82); }
+    #info      { background: rgba(8,7,4,0.80); }
+    #contact   { background: rgba(12,10,6,0.82); }
+    footer     { background: rgba(4,3,2,0.97) !important; }
+
     /* ── NAV ── */
     nav {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: var(--white);
-      border-bottom: 1.5px solid var(--navy);
+      background: var(--navy);
+      border-bottom: 1px solid rgba(201,168,76,0.3);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -51,12 +77,12 @@
       font-weight: 900;
       font-size: 1.6rem;
       letter-spacing: -0.02em;
-      color: var(--navy);
+      color: var(--white);
       text-decoration: none;
     }
 
     .nav-logo span {
-      color: var(--baby-blue);
+      color: var(--gold);
     }
 
     .nav-links {
@@ -71,22 +97,22 @@
       font-size: 0.85rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--navy);
+      color: rgba(255,255,255,0.8);
       text-decoration: none;
       transition: color 0.15s;
     }
 
-    .nav-links a:hover { color: var(--baby-blue); }
+    .nav-links a:hover { color: var(--gold); }
 
     .nav-cta {
-      background: var(--navy);
-      color: var(--white) !important;
+      background: var(--gold);
+      color: var(--navy) !important;
       padding: 0.45rem 1.1rem;
       border-radius: 3px;
       transition: background 0.15s !important;
     }
 
-    .nav-cta:hover { background: var(--baby-blue) !important; color: var(--navy) !important; }
+    .nav-cta:hover { background: var(--white) !important; color: var(--navy) !important; }
 
     /* hamburger */
     .hamburger {
@@ -102,14 +128,14 @@
       display: block;
       width: 24px;
       height: 2px;
-      background: var(--navy);
+      background: var(--white);
       transition: all 0.2s;
     }
     .mobile-menu {
       display: none;
       flex-direction: column;
-      background: var(--white);
-      border-bottom: 1.5px solid var(--navy);
+      background: rgba(8,6,4,0.97);
+      border-bottom: 1px solid rgba(201,168,76,0.3);
       padding: 1rem 5vw;
       gap: 0.75rem;
     }
@@ -119,7 +145,7 @@
       font-size: 0.9rem;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      color: var(--navy);
+      color: rgba(255,255,255,0.85);
       text-decoration: none;
     }
 
@@ -140,8 +166,12 @@
       font-size: 0.8rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--mid-grey);
+      color: var(--gold);
       margin-bottom: 1rem;
+      background: rgba(0,0,0,0.5);
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
     }
 
     .hero-headline {
@@ -150,21 +180,26 @@
       font-size: clamp(4rem, 11vw, 9rem);
       line-height: 0.92;
       letter-spacing: -0.02em;
-      color: var(--navy);
+      color: var(--white);
       max-width: 18ch;
+      text-shadow: 0 2px 30px rgba(0,0,0,0.9);
     }
 
     .hero-headline em {
       font-style: normal;
-      color: var(--baby-blue);
+      color: var(--gold);
     }
 
     .hero-sub {
       margin-top: 2rem;
       font-size: 1rem;
-      color: var(--mid-grey);
+      color: rgba(255,255,255,0.85);
       max-width: 38ch;
       line-height: 1.7;
+      background: rgba(0,0,0,0.5);
+      display: inline-block;
+      padding: 0.5rem 0.75rem;
+      border-radius: 3px;
     }
 
     .hero-actions {
@@ -177,8 +212,8 @@
 
     .btn-primary {
       display: inline-block;
-      background: var(--navy);
-      color: var(--white);
+      background: var(--gold);
+      color: #0D0D0D;
       font-family: var(--font-body);
       font-weight: 600;
       font-size: 0.85rem;
@@ -187,21 +222,21 @@
       text-decoration: none;
       padding: 0.8rem 2rem;
       border-radius: 3px;
-      border: 2px solid var(--navy);
+      border: 2px solid var(--gold);
       transition: background 0.15s, color 0.15s;
       cursor: pointer;
     }
 
     .btn-primary:hover {
-      background: var(--baby-blue);
-      border-color: var(--baby-blue);
-      color: var(--navy);
+      background: var(--white);
+      border-color: var(--white);
+      color: #0D0D0D;
     }
 
     .btn-outline {
       display: inline-block;
       background: transparent;
-      color: var(--navy);
+      color: var(--white);
       font-family: var(--font-body);
       font-weight: 600;
       font-size: 0.85rem;
@@ -210,14 +245,15 @@
       text-decoration: none;
       padding: 0.8rem 2rem;
       border-radius: 3px;
-      border: 2px solid var(--navy);
-      transition: background 0.15s, color 0.15s;
+      border: 2px solid rgba(255,255,255,0.6);
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
       cursor: pointer;
     }
 
     .btn-outline:hover {
-      background: var(--navy);
-      color: var(--white);
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #0D0D0D;
     }
 
     .hero-accent-line {
@@ -226,7 +262,7 @@
       left: 0;
       right: 0;
       height: 4px;
-      background: var(--baby-blue);
+      background: var(--gold);
     }
 
     /* ── SECTION SHARED ── */
@@ -238,7 +274,7 @@
       font-size: 0.75rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--mid-grey);
+      color: var(--gold);
       margin-bottom: 0.75rem;
     }
 
@@ -248,7 +284,7 @@
       font-size: clamp(2.2rem, 5vw, 3.6rem);
       line-height: 0.95;
       letter-spacing: -0.02em;
-      color: var(--navy);
+      color: var(--white);
       margin-bottom: 3rem;
     }
 
@@ -325,7 +361,7 @@
       font-weight: 800;
       font-size: 1.25rem;
       letter-spacing: 0.01em;
-      color: var(--navy);
+      color: var(--white);
       margin-bottom: 0.25rem;
     }
 
@@ -333,7 +369,7 @@
       font-family: var(--font-body);
       font-weight: 600;
       font-size: 0.95rem;
-      color: var(--mid-grey);
+      color: var(--gold);
       margin-bottom: 0.75rem;
     }
 
@@ -348,10 +384,10 @@
       font-size: 0.7rem;
       font-weight: 600;
       letter-spacing: 0.06em;
-      border: 1.5px solid var(--border);
+      border: 1.5px solid rgba(201,168,76,0.4);
       padding: 0.2rem 0.5rem;
       border-radius: 2px;
-      color: var(--mid-grey);
+      color: rgba(255,255,255,0.7);
     }
 
     .product-meta { flex: 1; display: flex; flex-direction: column; gap: 0; }
@@ -361,7 +397,7 @@
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--baby-blue);
+      color: var(--gold);
       margin-bottom: 0.3rem;
     }
 
@@ -373,7 +409,7 @@
 
     .product-spec {
       margin: 0.9rem 0 1rem;
-      border-top: 1.5px solid var(--border);
+      border-top: 1px solid rgba(201,168,76,0.25);
       padding-top: 0.75rem;
     }
 
@@ -382,7 +418,7 @@
       font-weight: 600;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--navy);
+      color: rgba(255,255,255,0.8);
       cursor: pointer;
       user-select: none;
       list-style: none;
@@ -397,7 +433,7 @@
       content: '+';
       font-size: 1rem;
       line-height: 1;
-      color: var(--baby-blue);
+      color: var(--gold);
       margin-left: auto;
       font-weight: 700;
     }
@@ -415,7 +451,7 @@
 
     .spec-list li {
       font-size: 0.82rem;
-      color: #4B5563;
+      color: rgba(255,255,255,0.6);
       padding-left: 0.9rem;
       position: relative;
     }
@@ -424,7 +460,7 @@
       content: '—';
       position: absolute;
       left: 0;
-      color: var(--baby-blue);
+      color: var(--gold);
       font-weight: 700;
     }
 
@@ -440,7 +476,7 @@
       width: 22px;
       height: 22px;
       border-radius: 50%;
-      border: 2px solid var(--border);
+      border: 2px solid rgba(255,255,255,0.3);
       cursor: pointer;
       transition: border-color 0.15s, transform 0.15s;
       padding: 0;
@@ -448,23 +484,25 @@
 
     .swatch:hover { transform: scale(1.15); }
 
-    .swatch-white { background: #ffffff; border-color: #ccc; }
-    .swatch-black { background: #111111; }
+    .swatch-white { background: #ffffff; border-color: rgba(255,255,255,0.5); }
+    .swatch-black { background: #111111; border-color: rgba(255,255,255,0.2); }
 
-    .swatch-active { border-color: var(--navy) !important; border-width: 2.5px; }
+    .swatch-active { border-color: var(--gold) !important; border-width: 2.5px; }
 
     .swatch-label {
       font-size: 0.75rem;
       font-weight: 600;
       letter-spacing: 0.07em;
       text-transform: uppercase;
-      color: var(--baby-blue);
+      color: var(--gold);
       margin-left: 0.25rem;
     }
 
-    /* ── BLUE BAND ── */
+    /* ── GOLD BAND ── */
     .blue-band {
-      background: var(--baby-blue);
+      background: rgba(201,168,76,0.15);
+      border-top: 1px solid rgba(201,168,76,0.4);
+      border-bottom: 1px solid rgba(201,168,76,0.4);
       padding: 4rem 5vw;
       display: flex;
       align-items: center;
@@ -478,7 +516,7 @@
       font-weight: 900;
       font-size: clamp(1.8rem, 4vw, 3rem);
       line-height: 1;
-      color: var(--navy);
+      color: var(--white);
     }
 
     /* ── ABOUT ── */
@@ -494,7 +532,7 @@
     .about-body {
       font-size: 1rem;
       line-height: 1.75;
-      color: #374151;
+      color: rgba(255,255,255,0.75);
     }
 
     .about-body p + p { margin-top: 1rem; }
@@ -506,7 +544,7 @@
     }
 
     .fact {
-      border-top: 2px solid var(--baby-blue);
+      border-top: 2px solid var(--gold);
       padding-top: 1rem;
     }
 
@@ -514,20 +552,44 @@
       font-family: var(--font-display);
       font-weight: 900;
       font-size: 2.8rem;
-      color: var(--navy);
+      color: var(--gold);
       line-height: 1;
     }
 
     .fact-label {
       font-size: 0.85rem;
       font-weight: 500;
-      color: var(--mid-grey);
+      color: rgba(255,255,255,0.6);
       margin-top: 0.25rem;
     }
 
+    /* ── INFO IMAGE ROTATOR ── */
+    .info-image-rotator {
+      position: relative;
+      width: calc(100% + 10vw);
+      margin-left: -5vw;
+      margin-right: -5vw;
+      margin-bottom: 3.5rem;
+      overflow: hidden;
+      aspect-ratio: 16/7;
+    }
+
+    .info-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+
+    .info-img-active { opacity: 1; }
+
     /* ── SHIPPING / INFO STRIP ── */
     #info {
-      background: var(--white);
+      background: transparent;
       padding: 5rem 5vw;
     }
 
@@ -542,16 +604,16 @@
       font-weight: 800;
       font-size: 1.1rem;
       letter-spacing: 0.02em;
-      color: var(--navy);
+      color: var(--white);
       margin-bottom: 0.75rem;
-      border-bottom: 2px solid var(--baby-blue);
+      border-bottom: 2px solid var(--gold);
       padding-bottom: 0.5rem;
     }
 
     .info-block p {
       font-size: 0.9rem;
       line-height: 1.7;
-      color: #4B5563;
+      color: rgba(255,255,255,0.65);
     }
 
     .info-block ul {
@@ -561,13 +623,13 @@
 
     .info-block ul li {
       font-size: 0.9rem;
-      color: #4B5563;
+      color: rgba(255,255,255,0.65);
       padding: 0.2rem 0;
     }
 
     .info-block ul li::before {
       content: '— ';
-      color: var(--baby-blue);
+      color: var(--gold);
       font-weight: 700;
     }
 
@@ -582,7 +644,7 @@
 
     .contact-sub {
       font-size: 0.95rem;
-      color: var(--mid-grey);
+      color: rgba(255,255,255,0.6);
       margin-bottom: 2.5rem;
     }
 
@@ -604,7 +666,7 @@
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--navy);
+      color: rgba(255,255,255,0.8);
       margin-bottom: 0.4rem;
     }
 
@@ -613,9 +675,9 @@
     .form-field select {
       font-family: var(--font-body);
       font-size: 0.95rem;
-      color: var(--navy);
-      background: var(--white);
-      border: 1.5px solid var(--border);
+      color: var(--white);
+      background: rgba(255,255,255,0.07);
+      border: 1.5px solid rgba(201,168,76,0.3);
       border-radius: 3px;
       padding: 0.65rem 0.85rem;
       outline: none;
@@ -623,17 +685,20 @@
       -webkit-appearance: none;
     }
 
+    .form-field input::placeholder,
+    .form-field textarea::placeholder { color: rgba(255,255,255,0.3); }
+
     .form-field input:focus,
     .form-field textarea:focus,
     .form-field select:focus {
-      border-color: var(--navy);
+      border-color: var(--gold);
     }
 
     .form-field textarea { resize: vertical; min-height: 130px; }
 
     .form-notice {
       font-size: 0.8rem;
-      color: var(--mid-grey);
+      color: rgba(255,255,255,0.4);
       margin-top: 0.75rem;
     }
 
@@ -649,7 +714,7 @@
       grid-template-columns: 2fr 1fr 1fr 1fr;
       gap: 3rem;
       padding-bottom: 3rem;
-      border-bottom: 1px solid rgba(255,255,255,0.12);
+      border-bottom: 1px solid rgba(201,168,76,0.2);
     }
 
     .footer-brand .logo {
@@ -660,7 +725,7 @@
       letter-spacing: -0.02em;
     }
 
-    .footer-brand .logo span { color: var(--baby-blue); }
+    .footer-brand .logo span { color: var(--gold); }
 
     .footer-brand p {
       font-size: 0.88rem;
@@ -689,7 +754,7 @@
       transition: color 0.15s;
     }
 
-    .footer-col ul li a:hover { color: var(--baby-blue); }
+    .footer-col ul li a:hover { color: var(--gold); }
 
     .footer-bottom {
       display: flex;
@@ -712,7 +777,7 @@
       transition: color 0.15s;
     }
 
-    .footer-bottom a:hover { color: var(--baby-blue); }
+    .footer-bottom a:hover { color: var(--gold); }
 
     .footer-legal-links {
       display: flex;
@@ -745,54 +810,59 @@
     /* ── SUBMIT SUCCESS ── */
     .form-success {
       display: none;
-      background: var(--baby-blue);
+      background: rgba(201,168,76,0.2);
+      border: 1px solid var(--gold);
       border-radius: 3px;
       padding: 1rem 1.25rem;
       font-weight: 600;
       font-size: 0.9rem;
-      color: var(--navy);
+      color: var(--gold);
       margin-top: 1rem;
     }
   </style>
 </head>
 <body>
 
+<!-- background layers for crossfade -->
+<div class="bg-layer bg-layer-1" id="bgLayer1"></div>
+<div class="bg-layer bg-layer-2" id="bgLayer2"></div>
+
 <!-- ═══ NAV ═══ -->
 <nav>
   <a href="#home" class="nav-logo">Stupid<span>Tees</span></a>
   <ul class="nav-links">
-    <li><a href="#shop">Shop</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#info">Shipping</a></li>
-    <li><a href="#contact" class="nav-cta">Get in touch</a></li>
+    <li><a href="#shop">Don't Shop</a></li>
+    <li><a href="#about">Our Excuse</a></li>
+    <li><a href="#info">Shipping (sadly)</a></li>
+    <li><a href="#contact" class="nav-cta">Please Don't Contact Us</a></li>
   </ul>
   <button class="hamburger" aria-label="Open menu" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </button>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#shop" onclick="closeMenu()">Shop</a>
-  <a href="#about" onclick="closeMenu()">About</a>
-  <a href="#info" onclick="closeMenu()">Shipping</a>
-  <a href="#contact" onclick="closeMenu()">Get in touch</a>
+  <a href="#shop" onclick="closeMenu()">Don't Shop</a>
+  <a href="#about" onclick="closeMenu()">Our Excuse</a>
+  <a href="#info" onclick="closeMenu()">Shipping (sadly)</a>
+  <a href="#contact" onclick="closeMenu()">Please Don't Contact Us</a>
 </div>
 
 <!-- ═══ HERO ═══ -->
 <section id="home">
-  <p class="hero-eyebrow">New drops every month</p>
-  <h1 class="hero-headline">Just Tees.<br>Don't be <em>Stupid</em> —<br>Buy One.</h1>
-  <p class="hero-sub">Graphic tees for people who don't take themselves too seriously. Printed on premium blanks. Shipped fast.</p>
+  <p class="hero-eyebrow">New questionable designs every month</p>
+  <h1 class="hero-headline">Don't buy our<br><em>Stupid</em> Tees.</h1>
+  <p class="hero-sub">Seriously. Don't. They're just tees. Very good tees, admittedly. On premium cotton. Shipped fast. But still.</p>
   <div class="hero-actions">
-    <a href="#shop" class="btn-primary">Shop the range</a>
-    <a href="#about" class="btn-outline">Our story</a>
+    <a href="#shop" class="btn-primary">Don't Check Our Range</a>
+    <a href="#about" class="btn-outline">Our Excuse</a>
   </div>
   <div class="hero-accent-line"></div>
 </section>
 
 <!-- ═══ SHOP ═══ -->
 <section id="shop">
-  <p class="section-label">The goods</p>
-  <h2 class="section-title">Current range</h2>
+  <p class="section-label">Things you probably don't need</p>
+  <h2 class="section-title">The Tees.<br>Don't say we didn't warn you.</h2>
 
   <div class="product-grid">
 
@@ -821,7 +891,7 @@
         </div>
 
         <p class="product-name">Eat Me</p>
-        <p class="product-price">£17.99 <span class="price-note">— Free UK delivery</span></p>
+        <p class="product-price">£17.99 <span class="price-note">— Free UK delivery. Yes, really.</span></p>
 
         <div class="product-sizes">
           <span class="size-tag">S</span>
@@ -847,7 +917,7 @@
         </details>
       </div>
 
-      <a href="#contact" class="btn-outline">Order now</a>
+      <a href="#contact" class="btn-outline">Fine. I'll take one.</a>
     </div>
 
   </div>
@@ -855,33 +925,33 @@
 
 <!-- ═══ BLUE BAND ═══ -->
 <div class="blue-band">
-  <p class="blue-band-text">Free UK shipping<br>on every order.</p>
-  <a href="#shop" class="btn-primary">Shop now</a>
+  <p class="blue-band-text">Free UK shipping.<br>We're as surprised as you are.</p>
+  <a href="#shop" class="btn-primary">Don't Buy One</a>
 </div>
 
 <!-- ═══ ABOUT ═══ -->
 <section id="about">
-  <p class="section-label">Who we are</p>
-  <h2 class="section-title">Not overthought.<br>Just well made.</h2>
+  <p class="section-label">How this all happened</p>
+  <h2 class="section-title">Probably a mistake.<br>But here we are.</h2>
 
   <div class="about-grid">
     <div class="about-body">
-      <p>After years of wearing t-shirts churned out by corporate designers with zero interest in anything beyond the bland and the forgettable, I'd had enough. So I grabbed a coffee, opened the laptop, and decided to build my own.</p>
-      <p>Every design on this site is 100% mine — no cut and paste, no recycled clip art, no design-by-committee. Each one is made with you in mind, by someone who actually cares what ends up on the front of a tee.</p>
-      <p>The range keeps growing, the quality stays high, and every tee ships free within the UK on premium cotton that'll last. Have a browse, find something you like, and grab yourself a bargain.</p>
+      <p>After years of wearing t-shirts churned out by corporate designers with zero interest in anything beyond the bland and the forgettable, I'd had enough. So I grabbed a coffee, opened the laptop, and decided to build my own. Brilliant idea. Very sensible.</p>
+      <p>Every design on this site is 100% mine — no cut and paste, no recycled clip art, no design-by-committee. Each one is made with you in mind, by someone who actually cares what ends up on the front of a tee. Whether that's a good thing is still up for debate.</p>
+      <p>The range keeps growing, the quality stays high, and every tee ships free within the UK on premium cotton that'll last longer than most of my other decisions. Have a browse. Go on. You've come this far.</p>
     </div>
     <div class="about-facts">
       <div class="fact">
         <p class="fact-number">100%</p>
-        <p class="fact-label">Combed ring-spun cotton</p>
+        <p class="fact-label">Cotton. Not polyester nonsense.</p>
       </div>
       <div class="fact">
         <p class="fact-number">3–5</p>
-        <p class="fact-label">Working days to dispatch</p>
+        <p class="fact-label">Days to dispatch. We're not Amazon.</p>
       </div>
       <div class="fact">
         <p class="fact-number">30</p>
-        <p class="fact-label">Day returns, no questions asked</p>
+        <p class="fact-label">Day returns. No awkward questions.</p>
       </div>
     </div>
   </div>
@@ -889,14 +959,20 @@
 
 <!-- ═══ SHIPPING / INFO ═══ -->
 <section id="info">
-  <p class="section-label">Good to know</p>
-  <h2 class="section-title">Shipping, returns<br>& the small print.</h2>
+  <p class="section-label">The boring bit. Sorry.</p>
+  <h2 class="section-title">Shipping, returns<br>& stuff we're legally obliged to tell you.</h2>
+
+  <!-- rotating image panel -->
+  <div class="info-image-rotator">
+    <img id="infoImg1" src="assets/volvo.png" alt="" class="info-img info-img-active" />
+    <img id="infoImg2" src="assets/volvo-lamb.png" alt="" class="info-img" />
+  </div>
 
   <div class="info-grid">
 
     <div class="info-block">
-      <h3>Shipping times</h3>
-      <p>All orders are dispatched within 3–5 working days from our UK base. Once shipped, delivery estimates are:</p>
+      <h3>When will it arrive?</h3>
+      <p>We dispatch within 3–5 working days. We know, we know. Once it's on its way though:</p>
       <ul style="margin-top: 0.75rem;">
         <li>UK — 2–3 working days</li>
         <li>Europe — 5–8 working days</li>
@@ -905,27 +981,26 @@
     </div>
 
     <div class="info-block">
-      <h3>Returns</h3>
-      <p>We offer a 30-day return policy from the date of delivery. Items must be unworn, unwashed, and in original condition. To start a return, get in touch via our contact form and we'll sort it out.</p>
-      <p style="margin-top: 0.6rem;">Faulty or incorrect items? We'll cover the return postage, no arguments.</p>
+      <h3>Changed your mind? (Fair enough.)</h3>
+      <p>30-day returns from delivery. Unworn, unwashed, in original condition. Drop us a message via the contact form and we'll sort it — no passive aggression, no guilt trip.</p>
+      <p style="margin-top: 0.6rem;">Our fault? We'll pay the return postage. Obviously.</p>
     </div>
 
     <div class="info-block">
-      <h3>Sizing</h3>
-      <p>Our tees run true to size on a standard unisex fit. If you prefer a more fitted look, size down. If you're between sizes, go up. Full size chart available on request.</p>
+      <h3>Will it fit? (Good question.)</h3>
+      <p>They run true to size. If you want it baggy, go up. If you want it fitted, go down. If you want to look like you borrowed it from someone bigger, that's your call.</p>
       <ul style="margin-top: 0.75rem;">
-        <li>XS — chest 34–36"</li>
-        <li>S — chest 36–38"</li>
-        <li>M — chest 38–40"</li>
-        <li>L — chest 40–42"</li>
-        <li>XL — chest 42–44"</li>
-        <li>XXL — chest 44–46"</li>
+        <li>S — chest 34/36"</li>
+        <li>M — chest 38/40"</li>
+        <li>L — chest 42/44"</li>
+        <li>XL — chest 46/48"</li>
+        <li>2XL — chest 50/52"</li>
       </ul>
     </div>
 
     <div class="info-block">
-      <h3>Terms</h3>
-      <p>All prices shown in GBP and include VAT where applicable. We reserve the right to cancel orders if a product is out of stock — you'll be refunded in full. Designs are the property of Stupid Tees and may not be reproduced without permission.</p>
+      <h3>The small print (yawn)</h3>
+      <p>Prices in GBP, VAT included where applicable. We reserve the right to cancel if something sells out — you'll get your money back, obviously. Designs belong to us. Please don't steal them, it would be Stupid.</p>
     </div>
 
   </div>
@@ -934,9 +1009,9 @@
 <!-- ═══ CONTACT ═══ -->
 <section id="contact">
   <div class="contact-inner">
-    <p class="section-label">Talk to us</p>
-    <h2 class="section-title">Get in touch.</h2>
-    <p class="contact-sub">Questions, orders, general chat — we'll get back to you within one working day.</p>
+    <p class="section-label">Go on then</p>
+    <h2 class="section-title">Fine. Talk to us.</h2>
+    <p class="contact-sub">Got a question? A complaint? Just want someone to talk to? We'll respond within one working day. Probably.</p>
 
     <form id="contactForm" onsubmit="handleSubmit(event)">
       <div class="form-row">
@@ -954,23 +1029,23 @@
         <input type="email" id="email" name="email" required placeholder="jane@example.com" />
       </div>
       <div class="form-field">
-        <label for="subject">Subject</label>
+        <label for="subject">What's this about?</label>
         <select id="subject" name="subject">
-          <option value="">Select a topic</option>
-          <option value="order">Order query</option>
-          <option value="return">Returns</option>
-          <option value="sizing">Sizing help</option>
-          <option value="wholesale">Wholesale</option>
-          <option value="other">Something else</option>
+          <option value="">Pick one (we insist)</option>
+          <option value="order">I've ordered something. Now what?</option>
+          <option value="return">I've changed my mind</option>
+          <option value="sizing">Will it fit? (Nervous)</option>
+          <option value="wholesale">I want a lot of Stupid Tees</option>
+          <option value="other">Something else entirely</option>
         </select>
       </div>
       <div class="form-field">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" required placeholder="What's on your mind?"></textarea>
+        <label for="message">What's on your mind?</label>
+        <textarea id="message" name="message" required placeholder="Go ahead. We're listening. Allegedly."></textarea>
       </div>
-      <button type="submit" class="btn-primary">Send message</button>
-      <div class="form-success" id="formSuccess">Message sent. We'll be in touch soon.</div>
-      <p class="form-notice">We don't share your details with anyone. Ever.</p>
+      <button type="submit" class="btn-primary">Send it (no going back)</button>
+      <div class="form-success" id="formSuccess">Message received. We'll be in touch. Probably before you've forgotten you sent it.</div>
+      <p class="form-notice">Your details go nowhere. We're not that organised.</p>
     </form>
   </div>
 </section>
@@ -980,35 +1055,35 @@
   <div class="footer-top">
     <div class="footer-brand">
       <p class="logo">Stupid<span>Tees</span></p>
-      <p>Graphic tees for people who don't take themselves too seriously. UK based, worldwide shipping.</p>
+      <p>Graphic tees for people who know better but buy them anyway. UK based. Worldwide shipping. No regrets (probably).</p>
     </div>
     <div class="footer-col">
-      <h4>Shop</h4>
+      <h4>Things to buy</h4>
       <ul>
         <li><a href="#shop">All tees</a></li>
-        <li><a href="#info">Sizing guide</a></li>
+        <li><a href="#info">Will it fit?</a></li>
         <li><a href="#info">Shipping info</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Company</h4>
+      <h4>The humans</h4>
       <ul>
-        <li><a href="#about">About us</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about">Our excuse</a></li>
+        <li><a href="#contact">Say hello</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Policies</h4>
+      <h4>Boring but important</h4>
       <ul>
         <li><a href="#info">Returns policy</a></li>
         <li><a href="#info">Terms of sale</a></li>
         <li><a href="#info">Shipping times</a></li>
-        <li><a href="#contact">Complaints</a></li>
+        <li><a href="#contact">Complaints (sigh)</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>&copy; 2024 Stupid Tees. All rights reserved.</p>
+    <p>&copy; 2024 Stupid Tees. All rights reserved. (Yes, even the stupid ones.)</p>
     <div class="footer-legal-links">
       <a href="#info">Privacy policy</a>
       <a href="#info">Cookie policy</a>
@@ -1017,10 +1092,58 @@
 </footer>
 
 <script>
+  // ── BACKGROUND CROSSFADE ──
+  (function() {
+    const layer1 = document.getElementById('bgLayer1');
+    const layer2 = document.getElementById('bgLayer2');
+    let showingFirst = true;
+
+    const preload = new Image();
+    preload.src = 'https://raw.githubusercontent.com/aherndavid/stupid-tees/main/assets/runway2.png';
+
+    setInterval(function() {
+      showingFirst = !showingFirst;
+      layer1.style.opacity = showingFirst ? '1' : '0';
+      layer2.style.opacity = showingFirst ? '0' : '1';
+    }, 10000);
+  })();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    setTimeout(() => {
+      document.getElementById('contactForm').reset();
+      btn.textContent = 'Send it (no going back)';
+      btn.disabled = false;
+      const success = document.getElementById('formSuccess');
+      success.style.display = 'block';
+      setTimeout(() => { success.style.display = 'none'; }, 5000);
+    }, 800);
+  }
+
+  // ── INFO IMAGE ROTATOR ──
+  (function() {
+    const imgs = [
+      document.getElementById('infoImg1'),
+      document.getElementById('infoImg2')
+    ];
+    // preload
+    imgs.forEach(img => { const p = new Image(); p.src = img.src; });
+    let current = 0;
+    setInterval(function() {
+      imgs[current].classList.remove('info-img-active');
+      current = (current + 1) % imgs.length;
+      imgs[current].classList.add('info-img-active');
+    }, 10000);
+  })();
+
   function toggleMenu() {
     const m = document.getElementById('mobileMenu');
     m.classList.toggle('open');
   }
+
   function closeMenu() {
     document.getElementById('mobileMenu').classList.remove('open');
   }
@@ -1030,7 +1153,6 @@
     const label = document.getElementById('eatMeVariantLabel');
     const swatchWhite = document.querySelector('.swatch-white');
     const swatchBlack = document.querySelector('.swatch-black');
-
     if (colour === 'white') {
       img.src = 'assets/eat-me-white-tshirt.png';
       img.alt = 'Eat Me tee — white with black print';
@@ -1044,19 +1166,6 @@
       swatchBlack.classList.add('swatch-active');
       swatchWhite.classList.remove('swatch-active');
     }
-  }
-    e.preventDefault();
-    const btn = e.target.querySelector('button[type="submit"]');
-    btn.textContent = 'Sending...';
-    btn.disabled = true;
-    setTimeout(() => {
-      document.getElementById('contactForm').reset();
-      btn.textContent = 'Send message';
-      btn.disabled = false;
-      const success = document.getElementById('formSuccess');
-      success.style.display = 'block';
-      setTimeout(() => { success.style.display = 'none'; }, 5000);
-    }, 800);
   }
 </script>
 

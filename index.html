@@ -354,6 +354,114 @@
       color: var(--mid-grey);
     }
 
+    .product-meta { flex: 1; display: flex; flex-direction: column; gap: 0; }
+
+    .product-variant-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--baby-blue);
+      margin-bottom: 0.3rem;
+    }
+
+    .price-note {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--mid-grey);
+    }
+
+    .product-spec {
+      margin: 0.9rem 0 1rem;
+      border-top: 1.5px solid var(--border);
+      padding-top: 0.75rem;
+    }
+
+    .product-spec summary {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--navy);
+      cursor: pointer;
+      user-select: none;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .product-spec summary::-webkit-details-marker { display: none; }
+
+    .product-spec summary::after {
+      content: '+';
+      font-size: 1rem;
+      line-height: 1;
+      color: var(--baby-blue);
+      margin-left: auto;
+      font-weight: 700;
+    }
+
+    .product-spec[open] summary::after { content: '−'; }
+
+    .spec-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .spec-list li {
+      font-size: 0.82rem;
+      color: #4B5563;
+      padding-left: 0.9rem;
+      position: relative;
+    }
+
+    .spec-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--baby-blue);
+      font-weight: 700;
+    }
+
+    /* ── COLOUR SWATCHES ── */
+    .colour-swatches {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .swatch {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      cursor: pointer;
+      transition: border-color 0.15s, transform 0.15s;
+      padding: 0;
+    }
+
+    .swatch:hover { transform: scale(1.15); }
+
+    .swatch-white { background: #ffffff; border-color: #ccc; }
+    .swatch-black { background: #111111; }
+
+    .swatch-active { border-color: var(--navy) !important; border-width: 2.5px; }
+
+    .swatch-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--baby-blue);
+      margin-left: 0.25rem;
+    }
+
     /* ── BLUE BAND ── */
     .blue-band {
       background: var(--baby-blue);
@@ -672,7 +780,7 @@
 <!-- ═══ HERO ═══ -->
 <section id="home">
   <p class="hero-eyebrow">New drops every month</p>
-  <h1 class="hero-headline">Tees worth<br><em>talking about.</em></h1>
+  <h1 class="hero-headline">Just Tees.<br>Don't be <em>Stupid</em> —<br>Buy One.</h1>
   <p class="hero-sub">Graphic tees for people who don't take themselves too seriously. Printed on premium blanks. Shipped fast.</p>
   <div class="hero-actions">
     <a href="#shop" class="btn-primary">Shop the range</a>
@@ -688,96 +796,57 @@
 
   <div class="product-grid">
 
-    <!-- product 1 -->
+    <!-- EAT ME — single card, two colour variants -->
     <div class="product-card">
-      <div class="product-image">
-        <!-- Swap src for your transparent PNG, e.g. assets/tee-design-01.png -->
-        <img src="assets/tee-design-01.png" alt="Design 01 tee" onerror="this.style.display='none'; this.parentElement.querySelector('.product-placeholder').style.display='flex';" />
-        <div class="product-placeholder" style="display:none;">
-          <div class="placeholder-inner">
-            <span class="tee-label placeholder-label">Design 01</span>
-          </div>
-        </div>
-      </div>
-      <p class="product-name">Design 01</p>
-      <p class="product-price">£24.00</p>
-      <div class="product-sizes">
-        <span class="size-tag">XS</span>
-        <span class="size-tag">S</span>
-        <span class="size-tag">M</span>
-        <span class="size-tag">L</span>
-        <span class="size-tag">XL</span>
-        <span class="size-tag">XXL</span>
-      </div>
-      <a href="#contact" class="btn-outline">Order now</a>
-    </div>
 
-    <!-- product 2 -->
-    <div class="product-card">
-      <div class="product-image">
-        <img src="assets/tee-design-02.png" alt="Design 02 tee" onerror="this.style.display='none'; this.parentElement.querySelector('.product-placeholder').style.display='flex';" />
-        <div class="product-placeholder" style="display:none;">
-          <div class="placeholder-inner">
-            <span class="tee-label placeholder-label">Design 02</span>
-          </div>
-        </div>
+      <!-- image switcher -->
+      <div class="product-image" id="eatMeImageWrap">
+        <img id="eatMeImg"
+             src="assets/eat-me-white-tshirt.png"
+             alt="Eat Me tee — white with black print"
+             style="width:100%;height:100%;object-fit:contain;" />
       </div>
-      <p class="product-name">Design 02</p>
-      <p class="product-price">£24.00</p>
-      <div class="product-sizes">
-        <span class="size-tag">XS</span>
-        <span class="size-tag">S</span>
-        <span class="size-tag">M</span>
-        <span class="size-tag">L</span>
-        <span class="size-tag">XL</span>
-        <span class="size-tag">XXL</span>
-      </div>
-      <a href="#contact" class="btn-outline">Order now</a>
-    </div>
 
-    <!-- product 3 -->
-    <div class="product-card">
-      <div class="product-image">
-        <img src="assets/tee-design-03.png" alt="Design 03 tee" onerror="this.style.display='none'; this.parentElement.querySelector('.product-placeholder').style.display='flex';" />
-        <div class="product-placeholder" style="display:none;">
-          <div class="placeholder-inner">
-            <span class="tee-label placeholder-label">Design 03</span>
-          </div>
-        </div>
-      </div>
-      <p class="product-name">Design 03</p>
-      <p class="product-price">£24.00</p>
-      <div class="product-sizes">
-        <span class="size-tag">XS</span>
-        <span class="size-tag">S</span>
-        <span class="size-tag">M</span>
-        <span class="size-tag">L</span>
-        <span class="size-tag">XL</span>
-        <span class="size-tag">XXL</span>
-      </div>
-      <a href="#contact" class="btn-outline">Order now</a>
-    </div>
+      <div class="product-meta">
 
-    <!-- product 4 — add more cards following the same pattern -->
-    <div class="product-card">
-      <div class="product-image">
-        <img src="assets/tee-design-04.png" alt="Design 04 tee" onerror="this.style.display='none'; this.parentElement.querySelector('.product-placeholder').style.display='flex';" />
-        <div class="product-placeholder" style="display:none;">
-          <div class="placeholder-inner">
-            <span class="tee-label placeholder-label">Design 04</span>
-          </div>
+        <!-- colour swatches -->
+        <div class="colour-swatches">
+          <button class="swatch swatch-white swatch-active"
+                  aria-label="White tee"
+                  onclick="switchVariant('white')"></button>
+          <button class="swatch swatch-black"
+                  aria-label="Black tee"
+                  onclick="switchVariant('black')"></button>
+          <span class="swatch-label" id="eatMeVariantLabel">White tee / black print</span>
         </div>
+
+        <p class="product-name">Eat Me</p>
+        <p class="product-price">£17.99 <span class="price-note">— Free UK delivery</span></p>
+
+        <div class="product-sizes">
+          <span class="size-tag">S</span>
+          <span class="size-tag">M</span>
+          <span class="size-tag">L</span>
+          <span class="size-tag">XL</span>
+          <span class="size-tag">2XL</span>
+        </div>
+
+        <details class="product-spec">
+          <summary>Garment details</summary>
+          <ul class="spec-list">
+            <li>100% Cotton — fine gauge knit</li>
+            <li>141gsm</li>
+            <li>Shoulder to shoulder taping</li>
+            <li>Rolled forward shoulders for better fit</li>
+            <li>Front coverseaming on collar</li>
+            <li>Mens fit</li>
+            <li>S 34/36" &nbsp; M 38/40" &nbsp; L 42/44"</li>
+            <li>XL 46/48" &nbsp; 2XL 50/52"</li>
+            <li>Tracked delivery — 3–5 working days</li>
+          </ul>
+        </details>
       </div>
-      <p class="product-name">Design 04</p>
-      <p class="product-price">£24.00</p>
-      <div class="product-sizes">
-        <span class="size-tag">XS</span>
-        <span class="size-tag">S</span>
-        <span class="size-tag">M</span>
-        <span class="size-tag">L</span>
-        <span class="size-tag">XL</span>
-        <span class="size-tag">XXL</span>
-      </div>
+
       <a href="#contact" class="btn-outline">Order now</a>
     </div>
 
@@ -786,7 +855,7 @@
 
 <!-- ═══ BLUE BAND ═══ -->
 <div class="blue-band">
-  <p class="blue-band-text">Free shipping<br>on orders over £40.</p>
+  <p class="blue-band-text">Free UK shipping<br>on every order.</p>
   <a href="#shop" class="btn-primary">Shop now</a>
 </div>
 
@@ -797,9 +866,9 @@
 
   <div class="about-grid">
     <div class="about-body">
-      <p>Stupid Tees started because we got bored of graphic tees that either took themselves too seriously or looked like they were designed by committee. We make tees that are a little dumb, a lot fun, and actually worth wearing beyond the first wash.</p>
-      <p>Every design is printed on 100% combed ring-spun cotton blanks. Soft, fitted, and built to last. We print in small runs to keep quality up and rejects down — which means when a design sells out, it's gone.</p>
-      <p>Based in the UK. Shipping worldwide. No middlemen, no nonsense.</p>
+      <p>After years of wearing t-shirts churned out by corporate designers with zero interest in anything beyond the bland and the forgettable, I'd had enough. So I grabbed a coffee, opened the laptop, and decided to build my own.</p>
+      <p>Every design on this site is 100% mine — no cut and paste, no recycled clip art, no design-by-committee. Each one is made with you in mind, by someone who actually cares what ends up on the front of a tee.</p>
+      <p>The range keeps growing, the quality stays high, and every tee ships free within the UK on premium cotton that'll last. Have a browse, find something you like, and grab yourself a bargain.</p>
     </div>
     <div class="about-facts">
       <div class="fact">
@@ -955,7 +1024,27 @@
   function closeMenu() {
     document.getElementById('mobileMenu').classList.remove('open');
   }
-  function handleSubmit(e) {
+
+  function switchVariant(colour) {
+    const img = document.getElementById('eatMeImg');
+    const label = document.getElementById('eatMeVariantLabel');
+    const swatchWhite = document.querySelector('.swatch-white');
+    const swatchBlack = document.querySelector('.swatch-black');
+
+    if (colour === 'white') {
+      img.src = 'assets/eat-me-white-tshirt.png';
+      img.alt = 'Eat Me tee — white with black print';
+      label.textContent = 'White tee / black print';
+      swatchWhite.classList.add('swatch-active');
+      swatchBlack.classList.remove('swatch-active');
+    } else {
+      img.src = 'assets/eat-me-black-tshirt.png';
+      img.alt = 'Eat Me tee — black with white print';
+      label.textContent = 'Black tee / white print';
+      swatchBlack.classList.add('swatch-active');
+      swatchWhite.classList.remove('swatch-active');
+    }
+  }
     e.preventDefault();
     const btn = e.target.querySelector('button[type="submit"]');
     btn.textContent = 'Sending...';

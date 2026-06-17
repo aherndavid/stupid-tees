@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stupid Tees — Graphic Tees Done Right</title>
+  <meta name="description" content="Bold graphic tees. No fuss. Just well-made shirts with designs worth wearing." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1A2744;
+      --baby-blue: #87CEEB;
+      --blue-light: #EBF6FC;
+      --white: #FFFFFF;
+      --mid-grey: #6B7280;
+      --border: #E5E7EB;
+      --font-display: 'Barlow Condensed', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--navy);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1.5px solid var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5vw;
+      height: 62px;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.6rem;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      color: var(--baby-blue);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--navy);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--baby-blue); }
+
+    .nav-cta {
+      background: var(--navy);
+      color: var(--white) !important;
+      padding: 0.45rem 1.1rem;
+      border-radius: 3px;
+      transition: background 0.15s !important;
+    }
+
+    .nav-cta:hover { background: var(--baby-blue) !important; color: var(--navy) !important; }
+
+    /* hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      border: none;
+      background: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--navy);
+      transition: all 0.2s;
+    }
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: var(--white);
+      border-bottom: 1.5px solid var(--navy);
+      padding: 1rem 5vw;
+      gap: 0.75rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--navy);
+      text-decoration: none;
+    }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5vw 5vw 3vw;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+      margin-bottom: 1rem;
+    }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(4rem, 11vw, 9rem);
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+      max-width: 18ch;
+    }
+
+    .hero-headline em {
+      font-style: normal;
+      color: var(--baby-blue);
+    }
+
+    .hero-sub {
+      margin-top: 2rem;
+      font-size: 1rem;
+      color: var(--mid-grey);
+      max-width: 38ch;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--navy);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.8rem 2rem;
+      border-radius: 3px;
+      border: 2px solid var(--navy);
+      transition: background 0.15s, color 0.15s;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: var(--baby-blue);
+      border-color: var(--baby-blue);
+      color: var(--navy);
+    }
+
+    .btn-outline {
+      display: inline-block;
+      background: transparent;
+      color: var(--navy);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.8rem 2rem;
+      border-radius: 3px;
+      border: 2px solid var(--navy);
+      transition: background 0.15s, color 0.15s;
+      cursor: pointer;
+    }
+
+    .btn-outline:hover {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .hero-accent-line {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--baby-blue);
+    }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 6rem 5vw; }
+
+    .section-label {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+      margin-bottom: 3rem;
+    }
+
+    /* ── SHOP ── */
+    #shop { background: var(--white); }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 3rem 2rem;
+    }
+
+    .product-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-image {
+      width: 100%;
+      aspect-ratio: 4/5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--white);
+      margin-bottom: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.03);
+    }
+
+    /* placeholder when no image loaded */
+    .product-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blue-light);
+    }
+
+    .placeholder-inner {
+      text-align: center;
+    }
+
+    .placeholder-inner .tee-icon {
+      font-size: 3rem;
+      display: block;
+      margin-bottom: 0.5rem;
+      opacity: 0.3;
+    }
+
+    .placeholder-label {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      color: var(--navy);
+      opacity: 0.4;
+    }
+
+    .product-name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: 0.01em;
+      color: var(--navy);
+      margin-bottom: 0.25rem;
+    }
+
+    .product-price {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--mid-grey);
+      margin-bottom: 0.75rem;
+    }
+
+    .product-sizes {
+      display: flex;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .size-tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      border: 1.5px solid var(--border);
+      padding: 0.2rem 0.5rem;
+      border-radius: 2px;
+      color: var(--mid-grey);
+    }
+
+    /* ── BLUE BAND ── */
+    .blue-band {
+      background: var(--baby-blue);
+      padding: 4rem 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .blue-band-text {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      line-height: 1;
+      color: var(--navy);
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--blue-light); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-body {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: #374151;
+    }
+
+    .about-body p + p { margin-top: 1rem; }
+
+    .about-facts {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .fact {
+      border-top: 2px solid var(--baby-blue);
+      padding-top: 1rem;
+    }
+
+    .fact-number {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 2.8rem;
+      color: var(--navy);
+      line-height: 1;
+    }
+
+    .fact-label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--mid-grey);
+      margin-top: 0.25rem;
+    }
+
+    /* ── SHIPPING / INFO STRIP ── */
+    #info {
+      background: var(--white);
+      padding: 5rem 5vw;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 3rem;
+    }
+
+    .info-block h3 {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: 0.02em;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+      border-bottom: 2px solid var(--baby-blue);
+      padding-bottom: 0.5rem;
+    }
+
+    .info-block p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: #4B5563;
+    }
+
+    .info-block ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .info-block ul li {
+      font-size: 0.9rem;
+      color: #4B5563;
+      padding: 0.2rem 0;
+    }
+
+    .info-block ul li::before {
+      content: '— ';
+      color: var(--baby-blue);
+      font-weight: 700;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--blue-light); }
+
+    .contact-inner {
+      max-width: 600px;
+    }
+
+    .contact-inner .section-title { margin-bottom: 0.5rem; }
+
+    .contact-sub {
+      font-size: 0.95rem;
+      color: var(--mid-grey);
+      margin-bottom: 2.5rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+    }
+
+    .form-field label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-field input,
+    .form-field textarea,
+    .form-field select {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--navy);
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 3px;
+      padding: 0.65rem 0.85rem;
+      outline: none;
+      transition: border-color 0.15s;
+      -webkit-appearance: none;
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus,
+    .form-field select:focus {
+      border-color: var(--navy);
+    }
+
+    .form-field textarea { resize: vertical; min-height: 130px; }
+
+    .form-notice {
+      font-size: 0.8rem;
+      color: var(--mid-grey);
+      margin-top: 0.75rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: var(--white);
+      padding: 4rem 5vw 2.5rem;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .footer-brand .logo {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.5rem;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+
+    .footer-brand .logo span { color: var(--baby-blue); }
+
+    .footer-brand p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.55);
+      margin-top: 0.75rem;
+      max-width: 28ch;
+      line-height: 1.65;
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 1rem;
+    }
+
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+
+    .footer-col ul li a {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-col ul li a:hover { color: var(--baby-blue); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 2rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-bottom p {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.35);
+    }
+
+    .footer-bottom a {
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: color 0.15s;
+    }
+
+    .footer-bottom a:hover { color: var(--baby-blue); }
+
+    .footer-legal-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      .hero-headline { font-size: clamp(3rem, 14vw, 5.5rem); }
+
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+      .footer-top { grid-template-columns: 1fr 1fr; }
+
+      .form-row { grid-template-columns: 1fr; }
+
+      .blue-band { justify-content: center; text-align: center; }
+    }
+
+    @media (max-width: 520px) {
+      .footer-top { grid-template-columns: 1fr; }
+    }
+
+    /* ── SCROLL ANCHOR OFFSET ── */
+    [id] { scroll-margin-top: 70px; }
+
+    /* ── SUBMIT SUCCESS ── */
+    .form-success {
+      display: none;
+      background: var(--baby-blue);
+      border-radius: 3px;
+      padding: 1rem 1.25rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--navy);
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <a href="#home" class="nav-logo">Stupid<span>Tees</span></a>
+  <ul class="nav-links">
+    <li><a href="#shop">Shop</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#info">Shipping</a></li>
+    <li><a href="#contact" class="nav-cta">Get in touch</a></li>
+  </ul>
+  <button class="hamburger" aria-label="Open menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#shop" onclick="closeMenu()">Shop</a>
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#info" onclick="closeMenu()">Shipping</a>
+  <a href="#contact" onclick="closeMenu()">Get in touch</a>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section id="home">
+  <p class="hero-eyebrow">New drops every month</p>
+  <h1 class="hero-headline">Tees worth<br><em>talking about.</em></h1>
+  <p class="hero-sub">Graphic tees for people who don't take themselves too seriously. Printed on premium blanks. Shipped fast.</p>
+  <div class="hero-actions">
+    <a href="#shop" class="btn-primary">Shop the range</a>
+    <a href="#about" class="btn-outline">Our story</a>
+  </div>
+  <div class="hero-accent-line"></div>
+</section>
+
+<!-- ═══ SHOP ═══ -->
+<section id="shop">
+  <p class="section-label">The goods</p>
+  <h2 class="section-title">Current range</h2>
+
+  <div class="product-grid">
+
+    <!-- product 1 -->
+    <div class="product-card">
+      <div class="product-image">
+        <!-- Swap src for your transparent PNG, e.g. assets/tee-design-01.png -->
+        <img src="assets/tee-design-01.png" alt="Design 01 tee" onerror="this.style.display='none'; this.parentElement.querySelector('.product-placeholder').style.display='flex';" />
+        <div class="product-placeholder" style="display:none;">
+          <div class="placeholder-inner">
+            <span class="tee-label placeholder-label">Design 01</span>
+          </div>
+        </div>
+      </div>
+      <p class="product-name">Design 01</p>
+      <p class="product-price">£24.00</p>
+      <div class="product-sizes">
+        <span class="size-tag">XS</span>
+        <span class="size-tag">S</span>
+        <span class="size-tag">M</span>
+        <span class="size-tag">L</span>
+        <span class="size-tag">XL</span>
+        <span class="size-tag">XXL</span>
+      </div>
+      <a href="#contact" class="btn-outline">Order now</a>
+    </div>
+
+    <!-- product 2 -->
+    <div class="product-card">
+      <div class="product-image">
+        <img src="assets/tee-design-02.png" alt="Design 02 tee" onerror="this.style.display='none'; this.parentElement.querySelector('.product-placeholder').style.display='flex';" />
+        <div class="product-placeholder" style="display:none;">
+          <div class="placeholder-inner">
+            <span class="tee-label placeholder-label">Design 02</span>
+          </div>
+        </div>
+      </div>
+      <p class="product-name">Design 02</p>
+      <p class="product-price">£24.00</p>
+      <div class="product-sizes">
+        <span class="size-tag">XS</span>
+        <span class="size-tag">S</span>
+        <span class="size-tag">M</span>
+        <span class="size-tag">L</span>
+        <span class="size-tag">XL</span>
+        <span class="size-tag">XXL</span>
+      </div>
+      <a href="#contact" class="btn-outline">Order now</a>
+    </div>
+
+    <!-- product 3 -->
+    <div class="product-card">
+      <div class="product-image">
+        <img src="assets/tee-design-03.png" alt="Design 03 tee" onerror="this.style.display='none'; this.parentElement.querySelector('.product-placeholder').style.display='flex';" />
+        <div class="product-placeholder" style="display:none;">
+          <div class="placeholder-inner">
+            <span class="tee-label placeholder-label">Design 03</span>
+          </div>
+        </div>
+      </div>
+      <p class="product-name">Design 03</p>
+      <p class="product-price">£24.00</p>
+      <div class="product-sizes">
+        <span class="size-tag">XS</span>
+        <span class="size-tag">S</span>
+        <span class="size-tag">M</span>
+        <span class="size-tag">L</span>
+        <span class="size-tag">XL</span>
+        <span class="size-tag">XXL</span>
+      </div>
+      <a href="#contact" class="btn-outline">Order now</a>
+    </div>
+
+    <!-- product 4 — add more cards following the same pattern -->
+    <div class="product-card">
+      <div class="product-image">
+        <img src="assets/tee-design-04.png" alt="Design 04 tee" onerror="this.style.display='none'; this.parentElement.querySelector('.product-placeholder').style.display='flex';" />
+        <div class="product-placeholder" style="display:none;">
+          <div class="placeholder-inner">
+            <span class="tee-label placeholder-label">Design 04</span>
+          </div>
+        </div>
+      </div>
+      <p class="product-name">Design 04</p>
+      <p class="product-price">£24.00</p>
+      <div class="product-sizes">
+        <span class="size-tag">XS</span>
+        <span class="size-tag">S</span>
+        <span class="size-tag">M</span>
+        <span class="size-tag">L</span>
+        <span class="size-tag">XL</span>
+        <span class="size-tag">XXL</span>
+      </div>
+      <a href="#contact" class="btn-outline">Order now</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ BLUE BAND ═══ -->
+<div class="blue-band">
+  <p class="blue-band-text">Free shipping<br>on orders over £40.</p>
+  <a href="#shop" class="btn-primary">Shop now</a>
+</div>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about">
+  <p class="section-label">Who we are</p>
+  <h2 class="section-title">Not overthought.<br>Just well made.</h2>
+
+  <div class="about-grid">
+    <div class="about-body">
+      <p>Stupid Tees started because we got bored of graphic tees that either took themselves too seriously or looked like they were designed by committee. We make tees that are a little dumb, a lot fun, and actually worth wearing beyond the first wash.</p>
+      <p>Every design is printed on 100% combed ring-spun cotton blanks. Soft, fitted, and built to last. We print in small runs to keep quality up and rejects down — which means when a design sells out, it's gone.</p>
+      <p>Based in the UK. Shipping worldwide. No middlemen, no nonsense.</p>
+    </div>
+    <div class="about-facts">
+      <div class="fact">
+        <p class="fact-number">100%</p>
+        <p class="fact-label">Combed ring-spun cotton</p>
+      </div>
+      <div class="fact">
+        <p class="fact-number">3–5</p>
+        <p class="fact-label">Working days to dispatch</p>
+      </div>
+      <div class="fact">
+        <p class="fact-number">30</p>
+        <p class="fact-label">Day returns, no questions asked</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SHIPPING / INFO ═══ -->
+<section id="info">
+  <p class="section-label">Good to know</p>
+  <h2 class="section-title">Shipping, returns<br>& the small print.</h2>
+
+  <div class="info-grid">
+
+    <div class="info-block">
+      <h3>Shipping times</h3>
+      <p>All orders are dispatched within 3–5 working days from our UK base. Once shipped, delivery estimates are:</p>
+      <ul style="margin-top: 0.75rem;">
+        <li>UK — 2–3 working days</li>
+        <li>Europe — 5–8 working days</li>
+        <li>Rest of world — 7–14 working days</li>
+      </ul>
+    </div>
+
+    <div class="info-block">
+      <h3>Returns</h3>
+      <p>We offer a 30-day return policy from the date of delivery. Items must be unworn, unwashed, and in original condition. To start a return, get in touch via our contact form and we'll sort it out.</p>
+      <p style="margin-top: 0.6rem;">Faulty or incorrect items? We'll cover the return postage, no arguments.</p>
+    </div>
+
+    <div class="info-block">
+      <h3>Sizing</h3>
+      <p>Our tees run true to size on a standard unisex fit. If you prefer a more fitted look, size down. If you're between sizes, go up. Full size chart available on request.</p>
+      <ul style="margin-top: 0.75rem;">
+        <li>XS — chest 34–36"</li>
+        <li>S — chest 36–38"</li>
+        <li>M — chest 38–40"</li>
+        <li>L — chest 40–42"</li>
+        <li>XL — chest 42–44"</li>
+        <li>XXL — chest 44–46"</li>
+      </ul>
+    </div>
+
+    <div class="info-block">
+      <h3>Terms</h3>
+      <p>All prices shown in GBP and include VAT where applicable. We reserve the right to cancel orders if a product is out of stock — you'll be refunded in full. Designs are the property of Stupid Tees and may not be reproduced without permission.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact">
+  <div class="contact-inner">
+    <p class="section-label">Talk to us</p>
+    <h2 class="section-title">Get in touch.</h2>
+    <p class="contact-sub">Questions, orders, general chat — we'll get back to you within one working day.</p>
+
+    <form id="contactForm" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-field">
+          <label for="fname">First name</label>
+          <input type="text" id="fname" name="fname" required placeholder="Jane" />
+        </div>
+        <div class="form-field">
+          <label for="lname">Last name</label>
+          <input type="text" id="lname" name="lname" required placeholder="Smith" />
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="email">Email address</label>
+        <input type="email" id="email" name="email" required placeholder="jane@example.com" />
+      </div>
+      <div class="form-field">
+        <label for="subject">Subject</label>
+        <select id="subject" name="subject">
+          <option value="">Select a topic</option>
+          <option value="order">Order query</option>
+          <option value="return">Returns</option>
+          <option value="sizing">Sizing help</option>
+          <option value="wholesale">Wholesale</option>
+          <option value="other">Something else</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required placeholder="What's on your mind?"></textarea>
+      </div>
+      <button type="submit" class="btn-primary">Send message</button>
+      <div class="form-success" id="formSuccess">Message sent. We'll be in touch soon.</div>
+      <p class="form-notice">We don't share your details with anyone. Ever.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <p class="logo">Stupid<span>Tees</span></p>
+      <p>Graphic tees for people who don't take themselves too seriously. UK based, worldwide shipping.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#shop">All tees</a></li>
+        <li><a href="#info">Sizing guide</a></li>
+        <li><a href="#info">Shipping info</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Policies</h4>
+      <ul>
+        <li><a href="#info">Returns policy</a></li>
+        <li><a href="#info">Terms of sale</a></li>
+        <li><a href="#info">Shipping times</a></li>
+        <li><a href="#contact">Complaints</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 Stupid Tees. All rights reserved.</p>
+    <div class="footer-legal-links">
+      <a href="#info">Privacy policy</a>
+      <a href="#info">Cookie policy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const m = document.getElementById('mobileMenu');
+    m.classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    setTimeout(() => {
+      document.getElementById('contactForm').reset();
+      btn.textContent = 'Send message';
+      btn.disabled = false;
+      const success = document.getElementById('formSuccess');
+      success.style.display = 'block';
+      setTimeout(() => { success.style.display = 'none'; }, 5000);
+    }, 800);
+  }
+</script>
+
+</body>
+</html>

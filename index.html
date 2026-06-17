@@ -43,10 +43,8 @@
       background-size: cover;
       background-position: center top;
       background-repeat: no-repeat;
-      transition: opacity 1.5s ease-in-out;
     }
-    .bg-layer-1 { background-image: url('https://raw.githubusercontent.com/aherndavid/stupid-tees/main/assets/runway.png'); opacity: 1; z-index: -1; }
-    .bg-layer-2 { background-image: url('https://raw.githubusercontent.com/aherndavid/stupid-tees/main/assets/runway2.png'); opacity: 0; z-index: -1; }
+    .bg-layer-1 { background-image: url('https://raw.githubusercontent.com/aherndavid/stupid-tees/main/assets/runway.png'); }
 
     /* make sections sit over background — dark cinematic theme */
     nav        { background: rgba(8,6,4,0.88) !important; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(201,168,76,0.3) !important; }
@@ -54,7 +52,7 @@
     #shop      { background: rgba(180,140,30,0.82); }
     .blue-band { background: rgba(201,168,76,0.18) !important; border-top: 1px solid rgba(201,168,76,0.4); border-bottom: 1px solid rgba(201,168,76,0.4); }
     #about     { background: rgba(12,10,6,0.82); }
-    #info      { background: rgba(8,7,4,0.80); }
+    #info      { background: transparent; }
     #contact   { background: rgba(12,10,6,0.82); }
     footer     { background: rgba(4,3,2,0.97) !important; }
 
@@ -823,9 +821,8 @@
 </head>
 <body>
 
-<!-- background layers for crossfade -->
+<!-- background -->
 <div class="bg-layer bg-layer-1" id="bgLayer1"></div>
-<div class="bg-layer bg-layer-2" id="bgLayer2"></div>
 
 <!-- ═══ NAV ═══ -->
 <nav>
@@ -1092,22 +1089,6 @@
 </footer>
 
 <script>
-  // ── BACKGROUND CROSSFADE ──
-  (function() {
-    const layer1 = document.getElementById('bgLayer1');
-    const layer2 = document.getElementById('bgLayer2');
-    let showingFirst = true;
-
-    const preload = new Image();
-    preload.src = 'https://raw.githubusercontent.com/aherndavid/stupid-tees/main/assets/runway2.png';
-
-    setInterval(function() {
-      showingFirst = !showingFirst;
-      layer1.style.opacity = showingFirst ? '1' : '0';
-      layer2.style.opacity = showingFirst ? '0' : '1';
-    }, 10000);
-  })();
-
   function handleSubmit(e) {
     e.preventDefault();
     const btn = e.target.querySelector('button[type="submit"]');
